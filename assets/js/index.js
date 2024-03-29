@@ -2,6 +2,8 @@
 
 let playerScore =0;
 let computerScore =0;
+let turn = 6;
+let remainingTurns = turn;
 
 function computerChoice(){
     const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
@@ -9,71 +11,69 @@ function computerChoice(){
     return choices[choiceIndex];
 }
 
-function rules(playerChoice, computerChoice) {
-
-    let result;
+function gameRules(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
 
-        result = "It's a TIE";
+        return "It's a TIE";
     }
     else if (playerChoice == "rock") {
 
-        if (opponentChoice == 'lizard' || computerChoice == 'scissors') {
+        if (computerChoice == 'lizard' || computerChoice == 'scissors') {
 
-            result = "You WIN";
+            return "You WIN";
 
         } else if (computerChoice == 'spock' || computerChoice == 'paper') {
 
-            result = "Opponent WIN";
+            return "Opponent WIN";
         }
     }
 
     else if (playerChoice == 'paper') {
         if (computerChoice == 'rock' || computerChoice == 'spock') {
 
-            result = "You WIN";
+            return "You WIN";
         }
         else if (computerChoice == 'scissors' || computerChoice == 'lizard') {
 
-            result = "Opponent WIN";
+            return "Opponent WIN";
         }
     }
     else if (playerChoice == 'scissors') {
 
         if (computerChoice == 'paper' || computerChoice == 'lizard') {
 
-            result = "You WIN";
+            return"You WIN";
         }
         else if (computerChoice == 'spock' || computerChoice == 'rock') {
 
-            result = "Opponent WIN";
+            return"Opponent WIN";
         }
     }
     else if (playerChoice == 'lizard') {
 
         if (computerChoice == 'paper' || computerChoice == 'spock') {
 
-            result = "You WIN";
+            return "You WIN";
         }
         else if (computerChoice == 'rock' || computerChoice == 'scissors') {
 
-            result = "Opponent WIN";
+            return "Opponent WIN";
         }
     }
     else if (playerChoice == 'spock') {
 
         if (computerChoice == 'rock' || computerChoice == 'scissors') {
 
-            result = "You WIN";
+            return 'You WIN';
         }
         else if (computerChoice == 'paper' || computerChoice == 'lizard') {
 
-            result = "Opponent WIN";
+            return "Opponent WIN";
         }
     }
 }
 
-function updateScore(){
+function updateScore(result){
     if (result === 'You WIN'){
         playerScore++;
     }
@@ -84,10 +84,16 @@ document.getElementById('score').innerText= `Score - You: ${playerScore} Compute
 }
 
 function runGame(playerChoice){
+    if (remainingTurns === 0){
+        alert('Game Over');
+        return;
+    }
     const computer= computerChoice();
-    const result = rules(playerChoice, computer);
+    const result = gameRules(playerChoice, computer);
     updateScore(result);
-
-    document.getElementById('result').innerText = `${result} Your Choice: ${userChoice}, Computer Choice: ${computer}`;
-    
+    document.getElementById('result').innerText = `${result} Your Choice: ${playerChoice}, Computer Choice: ${computer}`;
+    remainingTurns--;
+    if (remainingTurns === 0){
+        alert('Game Over');
+    }
 }
