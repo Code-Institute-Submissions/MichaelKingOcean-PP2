@@ -82,3 +82,12 @@ function updateScore(){
     }
 document.getElementById('score').innerText= `Score - You: ${playerScore} Computer: ${computerScore}`;
 }
+
+function runGame(playerChoice){
+    const computer= computerChoice();
+    const result = rules(playerChoice, computer);
+    updateScore(result);
+
+    document.getElementById('result').innerText = `${result} Your Choice: ${userChoice}, Computer Choice: ${computer}`;
+    
+}
