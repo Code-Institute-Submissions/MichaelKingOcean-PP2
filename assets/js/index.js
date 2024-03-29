@@ -2,8 +2,8 @@
 
 let playerScore =0;
 let computerScore =0;
-let turn = 6;
-let remainingTurns = turn;
+let turns = 6;
+let remainingTurns = turns;
 
 function computerChoice(){
     const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
@@ -96,4 +96,24 @@ function runGame(playerChoice){
     if (remainingTurns === 0){
         alert('Game Over');
     }
+}
+
+function endGame(){
+    if (playerScore > computerScore){
+        alert('You win the Game');
+    }
+    else if(computerScore > playerScore){
+        alert('Computer win the Game');
+    }else{
+         alert('Its a TIE') 
+    }resetGame();
+}
+
+function resetGame(){
+    playerScore= 0;
+    computerScore - 0;
+    remainingTurns = turns;
+    document.getElementById('score').innerText= `Score - You: ${playerScore} Computer: ${computerScore}`;
+    document.getElementById('result').innerText = '';
+
 }
