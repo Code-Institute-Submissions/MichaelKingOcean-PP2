@@ -1,78 +1,84 @@
-function runGame(playerChoice) {
-    let resultsDisplay = document.getElementById("resultsDisplay");
-    const pscore = document.getElementById("pscore");
-    const oscore = document.getElementById("oscore");
 
-    let player = 0;
-    let opponent = 0;
 
-    const choice = ["rock", "paper", "scissors", "lizard", "spock"];
-    const opponentChoice = choice[Math.floor(Math.random() * choice.length)];
+let playerScore =0;
+let computerScore =0;
 
-    /*const result =
-    winner(playerChoice, opponentChoice);*/
+function computerChoice(){
+    const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+    const choiceIndex = Math.floor(Math.random() * choices.length);
+    return choices[choiceIndex];
+}
+
+function rules(playerChoice, computerChoice) {
 
     let result;
-    if (playerChoice == opponentChoice) {
+    if (playerChoice == computerChoice) {
 
         result = "It's a TIE";
     }
     else if (playerChoice == "rock") {
 
-        if (opponentChoice == 'lizard' || opponentChoice == 'scissors') {
+        if (opponentChoice == 'lizard' || computerChoice == 'scissors') {
 
             result = "You WIN";
 
-        } else if (opponentChoice == 'spock' || opponentChoice == 'paper') {
+        } else if (computerChoice == 'spock' || computerChoice == 'paper') {
 
             result = "Opponent WIN";
         }
     }
 
     else if (playerChoice == 'paper') {
-        if (opponentChoice == 'rock' || opponentChoice == 'spock') {
+        if (computerChoice == 'rock' || computerChoice == 'spock') {
 
             result = "You WIN";
         }
-        else if (opponentChoice == 'scissors' || opponentChoice == 'lizard') {
+        else if (computerChoice == 'scissors' || computerChoice == 'lizard') {
 
             result = "Opponent WIN";
         }
     }
     else if (playerChoice == 'scissors') {
 
-        if (opponentChoice == 'paper' || opponentChoice == 'lizard') {
+        if (computerChoice == 'paper' || computerChoice == 'lizard') {
 
             result = "You WIN";
         }
-        else if (opponentChoice == 'spock' || opponentChoice == 'rock') {
+        else if (computerChoice == 'spock' || computerChoice == 'rock') {
 
             result = "Opponent WIN";
         }
     }
     else if (playerChoice == 'lizard') {
 
-        if (opponentChoice == 'paper' || opponentChoice == 'spock') {
+        if (computerChoice == 'paper' || computerChoice == 'spock') {
 
             result = "You WIN";
         }
-        else if (opponentChoice == 'rock' || opponentChoice == 'scissors') {
+        else if (computerChoice == 'rock' || computerChoice == 'scissors') {
 
             result = "Opponent WIN";
         }
     }
     else if (playerChoice == 'spock') {
 
-        if (opponentChoice == 'rock' || opponentChoice == 'scissors') {
+        if (computerChoice == 'rock' || computerChoice == 'scissors') {
 
             result = "You WIN";
         }
-        else if (opponentChoice == 'paper' || opponentChoice == 'lizard') {
+        else if (computerChoice == 'paper' || computerChoice == 'lizard') {
 
             result = "Opponent WIN";
         }
     }
+}
 
-    resultsDisplay.textContent = result;
+function updateScore(){
+    if (result === 'You WIN'){
+        playerScore++;
+    }
+    else if (result === "Opponent WIN"){
+        computerScore++;
+    }
 }
 
