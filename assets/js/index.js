@@ -80,5 +80,5 @@ function updateScore(){
     else if (result === "Opponent WIN"){
         computerScore++;
     }
+document.getElementById('score').innerText= `Score - You: ${playerScore} Computer: ${computerScore}`;
 }
-
